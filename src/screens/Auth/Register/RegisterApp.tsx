@@ -9,6 +9,8 @@ import { FontSize, screenWidth } from '../../../assets/Spacing'
 import { useNavigation } from '@react-navigation/core'
 import { SCREEN_ROUTER } from '../../../assets/route'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { Signup } from '../../../services/API'
+import { styles } from './styles'
 
 type RegisterApp = NativeStackNavigationProp<SCREEN_ROUTER, 'RegisterApp'>
 
@@ -17,6 +19,19 @@ export const RegisterApp = () => {
     const onSubmit = () => {
         return navigation.navigate('VerificationCode')
     }
+
+    const signUp = async () => {
+        try {
+            const response = await Signup({
+
+            })
+        }
+        catch (error) {
+            console.error(error);
+
+        }
+    }
+
     return (
         <ScrollView
             showsVerticalScrollIndicator={false}
@@ -32,6 +47,7 @@ export const RegisterApp = () => {
                     <AppText styleText={styles.headingTitle2}>Your SNS accounts</AppText>
                     <AppText styleText={styles.title}>Add the accounts you want to increase followers</AppText>
                     <AppInput
+                        // onValueChange=
                         children={'Youtube'}
                         styleText={styles.titleInput}
                         stylesInput={styles.inputForm}
@@ -92,54 +108,3 @@ export const RegisterApp = () => {
     )
 }
 
-const styles = StyleSheet.create({
-    headingTitle: {
-        fontFamily: 'NotoSans-Bold',
-        fontSize: FontSize.Font24,
-        color: COLOR.Neutral.Neutral10,
-        left: '100%'
-    },
-    headingTitle2: {
-        fontFamily: 'NotoSans-Bold',
-        fontSize: FontSize.Font24,
-        color: COLOR.Neutral.Neutral10,
-        marginTop: 35,
-        marginBottom: 4
-    },
-    title: {
-        fontFamily: 'NotoSans-Regular',
-        fontSize: FontSize.Font14,
-        color: COLOR.Neutral.Neutral3,
-        marginBottom: 8
-    },
-    titleInput: {
-        marginBottom: 4,
-        fontFamily: 'NotoSans-Regular',
-        fontWeight: '500',
-        color: COLOR.Neutral.Neutral4,
-        fontSize: FontSize.Font16
-    },
-    inputForm: {
-        backgroundColor: COLOR.TextField,
-        borderRadius: 8,
-        paddingTop: 20,
-        paddingBottom: 15,
-        paddingLeft: 16,
-    },
-    textBtn: {
-        fontFamily: 'NotoSans-Bold',
-        fontSize: FontSize.Font16,
-        color: COLOR.Neutral.Neutral0,
-        marginRight: 10,
-        marginTop: 16,
-        marginBottom: 16
-    },
-    btn: {
-        backgroundColor: COLOR.Primary,
-        borderRadius: 8,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 40,
-        marginBottom: 80
-    }
-})

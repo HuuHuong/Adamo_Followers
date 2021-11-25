@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-export const Account = () => {
+
+export const AppFlatlist = () => {
     return (
         <View>
-            <Text>aaaa</Text>
+            <Text></Text>
         </View>
     )
 }

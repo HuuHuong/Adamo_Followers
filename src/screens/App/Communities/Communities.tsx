@@ -4,7 +4,7 @@ import { View, Text } from 'react-native'
 export const Communities = () => {
     return (
         <View>
-            <Text></Text>
+            <Text>aaaa</Text>
         </View>
     )
 }

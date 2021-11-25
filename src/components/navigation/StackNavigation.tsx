@@ -37,32 +37,32 @@ export const StackNavigation = () => {
 const HomeStack = createNativeStackNavigator()
 export const HomeStackNavigation = () => {
     return (
-        <NavigationContainer>
+        <View>
             <HomeStack.Navigator>
                 <HomeStack.Screen name='Home' component={Home} />
             </HomeStack.Navigator>
-        </NavigationContainer>
+        </View>
     )
 }
 
 const CommunityStack = createNativeStackNavigator()
 export const CommunityStackNavigation = () => {
     return (
-        <NavigationContainer>
+        <View>
             <CommunityStack.Navigator>
                 <CommunityStack.Screen name='Communities' component={Communities} />
             </CommunityStack.Navigator>
-        </NavigationContainer>
+        </View>
     )
 }
 
 const AccountStack = createNativeStackNavigator()
 export const AccountStackNavigation = () => {
     return (
-        <NavigationContainer>
+        <View>
             <AccountStack.Navigator>
                 <AccountStack.Screen name='Account' component={Account} />
             </AccountStack.Navigator>
-        </NavigationContainer>
+        </View>
     )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import {
     View,
     Text,
@@ -15,12 +15,14 @@ interface InputProps {
     children?: string
     styleText?: ViewStyle | ViewStyle[] | any
     type?: string
-    onValueChange?: (e: string | ChangeEvent<any>) => void
+    onValueChange?: (e: string) => void
     keyboardType?: KeyboardTypeOptions;
     stylesInput?: TextStyle | TextStyle[];
     onFocused?: () => void;
     numpad?: boolean,
-    placeholderTextColor?: string
+    placeholderTextColor?: string,
+    value?: string,
+
 }
 
 export const AppInput = (props: InputProps) => {
@@ -31,13 +33,22 @@ export const AppInput = (props: InputProps) => {
         keyboardType,
         secureTextEntry,
         onValueChange,
+        value,
         styleText,
+        onFocused,
         ...rest
     } = props
+
+    const [isFocused, setIsFocused] = React.useState(false);
     return (
         <View style={{ marginTop: 16 }}>
             <AppText styleText={styleText}>{children}</AppText>
             <TextInput
+                onChangeText={onValueChange}
+                onFocus={() => {
+                    props.onFocused?.();
+                    setIsFocused(true);
+                }}
                 secureTextEntry={secureTextEntry}
                 placeholder={placeholder}
                 style={stylesInput}

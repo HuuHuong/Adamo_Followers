@@ -1,25 +1,55 @@
+import React, { useState } from 'react'
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import React from 'react'
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native'
 import { SCREEN_ROUTER } from '../../../assets/route'
-import { FontSize, screenWidth } from '../../../assets/Spacing'
+import { screenWidth } from '../../../assets/Spacing'
 import { COLOR } from '../../../assets/Theme'
 import { AppButton } from '../../../components/AppButton/AppButton'
 import { AppInput } from '../../../components/AppInput/AppInput'
 import { AppText } from '../../../components/AppText/AppText'
-
+import { styles } from './styles'
+import { FakeData } from '../../../assets/FakeData'
 
 type ForgotPassword = NativeStackNavigationProp<SCREEN_ROUTER, 'ForgotPassword'>
 
 export const ForgotPassword = () => {
     const navigation = useNavigation<ForgotPassword>()
+    const [email, setEmail] = useState('')
+    const [messeage, setMessage] = useState('')
+    const [isMessage, setIsMessage] = useState(Boolean)
+    const [background, setBackground] = useState(Boolean)
+
+
     const onSubmit = () => {
-        return navigation.navigate('VerificationCode')
+        FakeData.map((item) => {
+            if (item.email === email && validateEmail(email) === true)
+                return (
+                    setIsMessage(false),
+                    navigation.navigate('VerificationCode'))
+            else if (validateEmail(email) === true && item.email !== email)
+                return (
+                    setBackground(true),
+                    setMessage('Your email is incorrect or does not exist'),
+                    setIsMessage(true)
+                )
+            else return (
+                setBackground(true),
+                setMessage('Invalid your email'),
+                setIsMessage(true)
+            )
+        })
     }
+
+    function validateEmail(email: string) {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
     const onBackToLogin = () => {
         return navigation.navigate('LoginApp')
     }
+
     return (
         <SafeAreaView style={{
             flex: 1,
@@ -32,10 +62,19 @@ export const ForgotPassword = () => {
             <View style={{ width: screenWidth }}>
                 <View style={{ marginTop: 28 }}>
                     <AppInput
+                        onValueChange={setEmail}
+                        onFocused={() => { setBackground(false), setMessage('') }}
+                        value={email}
                         children={'Email'}
                         styleText={styles.titleInput}
-                        stylesInput={styles.inputForm}
+                        stylesInput={[styles.inputForm,
+                        background ? {
+                            borderColor: 'red',
+                            borderWidth: 1,
+                        } : { backgroundColor: COLOR.TextField }
+                        ]}
                     ></AppInput>
+                    {isMessage ? <Text>{messeage}</Text> : null}
                     <AppButton
                         onPress={onSubmit}
                         children={'Submit'}
@@ -55,42 +94,3 @@ export const ForgotPassword = () => {
         </SafeAreaView>
     )
 }
-const styles = StyleSheet.create({
-    headingTitle: {
-        fontFamily: 'NotoSans-Bold',
-        fontSize: FontSize.Font28,
-        color: COLOR.Neutral.Neutral10,
-        marginBottom: 6
-    },
-    title: {
-        fontFamily: 'NotoSans-Regular',
-        fontSize: FontSize.Font14,
-        color: COLOR.Neutral.Neutral6
-    },
-    titleInput: {
-        fontFamily: 'NotoSans-Regular',
-        fontSize: FontSize.Font16,
-        fontWeight: '500',
-        color: COLOR.Neutral.Neutral4
-    },
-    inputForm: {
-        paddingTop: 18,
-        paddingBottom: 18,
-        paddingLeft: 16,
-        backgroundColor: COLOR.TextField,
-        borderRadius: 8,
-        marginTop: 4
-    },
-    btn: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 8,
-        paddingTop: 16,
-        paddingBottom: 16
-    },
-    textBtn: {
-        fontFamily: 'NotoSans-Bold',
-        fontSize: FontSize.Font16,
-        marginRight: 10
-    }
-})
