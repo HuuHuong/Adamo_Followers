@@ -15,12 +15,14 @@ type LoginScreen = NativeStackNavigationProp<SCREEN_ROUTER, 'LoginApp'>
 export const LoginApp = () => {
     const navigation = useNavigation<LoginScreen>()
     const onLogin = () => {
-        // return navigation.navigate('BottomNavigation')
+        return navigation.navigate('BottomNavigation')
     }
     const onForgotPass = () => {
-        // return navigation.navigate('RegisterApp')
+        return navigation.navigate('ForgotPassword')
     }
-
+    const onRegister = () => {
+        return navigation.navigate('RegisterApp')
+    }
     return (
         <View style={{ flex: 1, backgroundColor: COLOR.Neutral.Neutral0, alignItems: 'center', justifyContent: 'center' }}>
             <View style={{ width: screenWidth }}>
@@ -54,7 +56,7 @@ export const LoginApp = () => {
                 />
                 <View style={{ marginTop: 24, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                     <AppText style={styles.footerTitle}>Don't have an account? </AppText>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={onRegister}>
                         <AppText styleText={[styles.footerTitle, { color: COLOR.Primary }]}>Register</AppText>
                     </TouchableOpacity>
 

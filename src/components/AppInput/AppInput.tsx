@@ -35,7 +35,7 @@ export const AppInput = (props: InputProps) => {
         ...rest
     } = props
     return (
-        <View style={{marginTop: 16}}>
+        <View style={{ marginTop: 16 }}>
             <AppText styleText={styleText}>{children}</AppText>
             <TextInput
                 secureTextEntry={secureTextEntry}

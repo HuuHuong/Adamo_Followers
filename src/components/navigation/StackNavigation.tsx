@@ -11,17 +11,21 @@ import { Home } from '../../screens/App/HomeScreen/Home'
 import { Communities } from '../../screens/App/Communities/Communities'
 import { Account } from '../../screens/App/Account/Account'
 import { SCREEN_ROUTER } from '../../assets/route'
+import { VerificationCode } from '../../screens/Auth/VerificationCode/VerificationCode'
+import { ResetSuccess } from '../../screens/Auth/ResetPassword/ResetSuccess'
 
 const AuthStack = createNativeStackNavigator()
 export const StackNavigation = () => {
     return (
         <NavigationContainer>
             <AuthStack.Navigator
-                screenOptions={{ headerShown: true }}>
+                screenOptions={{ headerShown: false }}>
                 <AuthStack.Screen name='LoginApp' component={LoginApp} />
                 <AuthStack.Screen name='ForgotPassword' component={ForgotPassword} />
                 <AuthStack.Screen name='RegisterApp' component={RegisterApp} />
                 <AuthStack.Screen name='ResetPassword' component={ResetPassword} />
+                <AuthStack.Screen name='VerificationCode' component={VerificationCode} />
+                <AuthStack.Screen name='ResetSuccess' component={ResetSuccess} />
                 <AuthStack.Screen name='BottomNavigation' component={BottomNavigation} />
             </AuthStack.Navigator>
         </NavigationContainer>
