@@ -17,11 +17,11 @@
   "paths": {
     // Top level alias
     "@assets": [
-      "src/assets"
+      "./src/assets"
     ],
-    // "@components": [
-    //   "src/components"
-    // ],
+    "@components": [
+      "./src/components"
+    ],
     // "@helper": [
     //   "src/helper"
     // ],
@@ -31,15 +31,15 @@
     // "@interfaces": [
     //   "src/interfaces"
     // ],
-    // "@navigation": [
-    //   "src/navigation"
-    // ],
+    "@navigation": [
+      "./src/navigation"
+    ],
     // "@redux": [
     //   "src/redux"
     // ],
-    // "@screens": [
-    //   "src/screens"
-    // ],
+    "@screens": [
+      "./src/screens"
+    ],
     // "@services": [
     //   "src/services"
     // ],

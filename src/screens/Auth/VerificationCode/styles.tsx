@@ -20,7 +20,8 @@ export
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: COLOR.Primary,
-            borderRadius: 8
+            borderRadius: 8,
+            flexDirection: 'row'
         },
         textBtn: {
             fontFamily: 'NotoSans-Bold',

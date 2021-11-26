@@ -20,7 +20,7 @@ export const AppAvatar = (props: ImageProps) => {
      } = props
     return (
         <View>
-            <Image source={pathImage} style={styleAvatar}/>
+            <Image source={pathImage} style={styleAvatar} resizeMode={'cover'}/>
         </View>
     )
 }

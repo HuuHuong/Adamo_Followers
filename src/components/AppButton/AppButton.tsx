@@ -10,13 +10,11 @@ import {
     TouchableOpacity,
     StyleSheet
 } from 'react-native'
-
-import { COLOR } from '../../assets/Theme'
-import { AppIcon } from '../AppIcon/AppIcon'
-import { AppText } from '../AppText/AppText'
+import { AppIcon } from '../AppIcon'
+import { AppText } from '../AppText'
 
 interface ButtonProps extends TouchableOpacityProps {
-    children?: string,
+    children?: string | undefined,
     uri?: string,
     pathImage: ImageSourcePropType,
     onPress?: () => void,
@@ -40,7 +38,7 @@ export const AppButton = (props: ButtonProps) => {
     return (
         <TouchableOpacity
             onPress={onPress}
-            style={[styleBtn, {flexDirection:'row', alignItems: 'center'}]}>
+            style={[styleBtn, { alignItems: 'center' }]}>
             <AppText styleText={styleChildren}>{children}</AppText>
             <AppIcon pathImage={pathImage} styleIcon={styleIcon} />
         </TouchableOpacity>

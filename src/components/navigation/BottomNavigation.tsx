@@ -15,6 +15,7 @@ export const BottomNavigation = () => {
     return (
         <View style={{ flex: 1 }}>
             <BottomTab.Navigator
+
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused }) => {
                         let iconName;

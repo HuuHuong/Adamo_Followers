@@ -6,4 +6,8 @@ export type SCREEN_ROUTER = {
     RegisterApp: undefined,
     ResetSuccess: undefined,
     BottomNavigation: undefined,
+
+    //App
+    Home: undefined,
+    PurchaseCoin: undefined
 }

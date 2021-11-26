@@ -29,6 +29,7 @@ export const styles = StyleSheet.create({
         marginTop: 4
     },
     btn: {
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 8,

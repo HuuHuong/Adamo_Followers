@@ -31,7 +31,8 @@ export
         btn: {
             backgroundColor: COLOR.Primary,
             borderRadius: 8,
-            justifyContent: 'center'
+            justifyContent: 'center',
+            flexDirection: 'row'
         },
         textBtn: {
             paddingTop: 17,

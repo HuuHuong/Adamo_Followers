@@ -1,6 +1,6 @@
 import { Theme } from "@react-navigation/native"
 import { StyleSheet, Dimensions } from "react-native"
-const {width, height} = Dimensions.get('screen')
+const { width, height } = Dimensions.get('screen')
 export const screenWidth = width - 50
 export const FontSize = {
     Font14: 14,
@@ -21,6 +21,15 @@ export const FontSize = {
     Font29: 29,
     Font30: 30,
     Font31: 31,
+    Font32: 32,
+    Font33: 33,
+    Font34: 34,
+    Font35: 35,
+    Font36: 36,
+    Font37: 37,
+    Font38: 38,
+    Font39: 39,
+    Font40: 40,
 }
 
 

@@ -7,7 +7,11 @@ export const styles = StyleSheet.create({
         fontFamily: 'NotoSans-Bold',
         fontSize: FontSize.Font24,
         color: COLOR.Neutral.Neutral10,
-        left: '100%'
+        marginVertical: 'auto',
+        width: '100%',
+        textAlign: 'center',
+        position: 'absolute',
+        zIndex: -1
     },
     headingTitle2: {
         fontFamily: 'NotoSans-Bold',
@@ -36,6 +40,9 @@ export const styles = StyleSheet.create({
         paddingBottom: 15,
         paddingLeft: 16,
     },
+    pickerForm: {
+        width: '100%'
+    },
     textBtn: {
         fontFamily: 'NotoSans-Bold',
         fontSize: FontSize.Font16,
@@ -50,6 +57,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 40,
-        marginBottom: 80
+        marginBottom: 80,
+        flexDirection: 'row'
     }
 })

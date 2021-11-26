@@ -31,17 +31,17 @@ export const FakeData2 = [{
 {
     id: 2,
     title: 'Fashion',
-    imageBG: require('../assets/icons/fashion.png')
+    imageBG: require('../assets/icons/anime.png')
 },
 {
     id: 3,
     title: 'Fashion',
-    imageBG: require('../assets/icons/fashion.png')
+    imageBG: require('../assets/icons/anime.png')
 },
 {
     id: 4,
     title: 'Fashion',
-    imageBG: require('../assets/icons/fashion.png')
+    imageBG: require('../assets/icons/anime.png')
 }]
 
 export const FakeData3 = [{

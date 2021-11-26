@@ -1,11 +1,25 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import {
+    View,
+    Text,
+    FlatListProps as PropsList,
+    FlatList
+} from 'react-native'
 
+interface FlatListProps {
+    data: any[],
 
-export const AppFlatlist = () => {
+}
+export const AppFlatlist = (props: FlatListProps) => {
+    const { data } = props
+
     return (
         <View>
-            <Text></Text>
+            <FlatList
+                data={data}
+                renderItem={renderItem}
+            >
+            </FlatList>
         </View>
     )
 }

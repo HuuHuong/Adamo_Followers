@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, ScrollView, StyleSheet } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import { COLOR } from '../../../assets/Theme'
 import { AppButton } from '../../../components/AppButton/AppButton'
 import { AppIcon } from '../../../components/AppIcon/AppIcon'
@@ -11,11 +11,17 @@ import { SCREEN_ROUTER } from '../../../assets/route'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { Signup } from '../../../services/API'
 import { styles } from './styles'
+import { AppPicker } from '../../../components/AppPicker'
 
 type RegisterApp = NativeStackNavigationProp<SCREEN_ROUTER, 'RegisterApp'>
 
 export const RegisterApp = () => {
     const navigation = useNavigation<RegisterApp>()
+    const gender = ['Male', 'Female', 'Other']
+    const year = []
+    for (var i = 1800; i <= 2025; i++) {
+        year.unshift(i.toString())
+    }
     const onSubmit = () => {
         return navigation.navigate('VerificationCode')
     }
@@ -40,7 +46,9 @@ export const RegisterApp = () => {
                 <View style={{ width: screenWidth }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 40 }}>
                         <AppButton
-                            styleIcon={{ width: 25, height: 25 }}
+                            onPress={() => navigation.goBack()}
+                            styleBtn={{ flexDirection: 'row' }}
+                            styleIcon={{ width: 25, height: 25, }}
                             pathImage={require('../../../assets/icons/CaretLeft.png')} />
                         <AppText styleText={styles.headingTitle}>Register</AppText>
                     </View>
@@ -90,6 +98,20 @@ export const RegisterApp = () => {
                         styleText={styles.titleInput}
                         stylesInput={styles.inputForm}
                     />
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <AppPicker
+                            stylePicker={styles.pickerForm}
+                            children={'Gender'}
+                            styleChildren={styles.titleInput}
+                            arrayValue={gender}
+                        />
+                        <AppPicker
+                            children={'Birth year'}
+                            styleChildren={styles.titleInput}
+                            stylePicker={styles.pickerForm}
+                            arrayValue={year}
+                        />
+                    </View>
                     <AppInput
                         children={'Introducion Code'}
                         styleText={styles.titleInput}

@@ -7,19 +7,17 @@ import {
 } from 'react-native'
 
 interface TextProps extends TextProperties {
-    children?: string,
+    children: string | undefined;
     styleText?: ViewStyle | ViewStyle[] | any
 }
 
 export const AppText = (props: TextProps) => {
-const {
-    children,
-    styleText
-} = props
+    const {
+        children,
+        styleText
+    } = props
 
     return (
-        <View>
-            <Text style={styleText}>{children}</Text>
-        </View>
+        <Text style={styleText}>{children}</Text>
     )
 }
