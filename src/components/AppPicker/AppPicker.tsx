@@ -5,12 +5,13 @@ import { COLOR, FontSize } from '../../assets';
 import { AppText } from '../AppText';
 
 interface PickerProps {
-    selectedValue?: string
-    onValueChange?: () => void
+    selectedValue?: string[] | number[] | any
+    onValueChange?: (itemValue: any, itemIndex: number) => void;
     stylePicker?: ViewStyle | ViewStyle[] | any
     arrayValue: any[]
     children?: string
     styleChildren?: ViewStyle | ViewStyle[] | any
+    currentValue?: string[]
 }
 
 export const AppPicker = (props: PickerProps) => {
@@ -19,10 +20,10 @@ export const AppPicker = (props: PickerProps) => {
         stylePicker,
         arrayValue,
         children,
+        currentValue,
         styleChildren
     } = props
     const [selectedValue] = useState(arrayValue);
-    const [currentValue, setCurrentValue] = useState([])
     return (
         <View style={{ width: '47.5%' }}>
             <AppText styleText={styles.txt}>{children}</AppText>
@@ -31,8 +32,7 @@ export const AppPicker = (props: PickerProps) => {
                     itemStyle={stylePicker}
                     mode={'dropdown'}
                     selectedValue={currentValue}
-                    onValueChange={(itemValue) => setCurrentValue(itemValue)
-                    }>
+                    onValueChange={onValueChange}>
                     {
                         selectedValue.map(label => {
                             return <Picker.Item style={styles.itemPicker} label={label} value={label} />

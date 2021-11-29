@@ -6,54 +6,57 @@ import { AppButton } from '../../../components/AppButton/AppButton'
 import { AppIcon } from '../../../components/AppIcon/AppIcon'
 import { AppInput } from '../../../components/AppInput/AppInput'
 import { AppText } from '../../../components/AppText/AppText'
-import { useNavigation } from '@react-navigation/core'
-import { SCREEN_ROUTER } from '../../../assets/route'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { styles } from './styles'
 import { FakeData } from '../../../assets/FakeData'
+import { Log_In } from '../../../services/API'
+import { useDispatch } from "react-redux"
 
-type LoginScreen = NativeStackNavigationProp<SCREEN_ROUTER, 'LoginApp'>
-
-export const LoginApp = () => {
-    const navigation = useNavigation<LoginScreen>()
-    //control
-    // const onLogin = () => {
-    //     return navigation.navigate('BottomNavigation')
-    // }
-    const onForgotPass = () => {
-        return navigation.navigate('ForgotPassword')
-    }
-    const onRegister = () => {
-        return navigation.navigate('RegisterApp')
-    }
-
+export const LoginApp = (props: any) => {
+    const { navigate } = props.navigation
+    const dispatch = useDispatch()
     //state
     const [isFocused, setIsFocused] = React.useState(false);
     const [email, setEmail] = useState<any>('')
     const [password, setPassword] = useState<any>('')
     const [background, setBackground] = useState(Boolean)
     const [messeage, setMessage] = useState('')
+    // const checkLogin = () => {
+    //     FakeData.map((item) => {
+    //         if (item.email === email && item.password === password)
+    //             return navigate('BottomNavigation')
+    //         else if (validateEmail(email) === false)
+    //             return (
+    //                 setBackground(true),
+    //                 setMessage('Invalid your email')
+    //             )
+    //         else if ((item.email === email && item.password != password) || item.email !== email)
+    //             return (
+    //                 setMessage('Your email or password is incorect')
+    //             )
 
-    const checkLogin = () => {
-        FakeData.map((item) => {
-            if (item.email === email && item.password === password)
-                return navigation.navigate('BottomNavigation')
-            else if (item.email === email && item.password != password)
-                return (
-                    setMessage('Your email or password is incorect')
-                )
-            else if (validateEmail(email) === false)
-                return (
-                    setBackground(true),
-                    setMessage('Invalid your email')
-                )
-        })
+    //     })
+    // }
+    // function validateEmail(email: string) {
+    //     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    //     return re.test(email);
+    // }
+    const checkLogin = async () => {
+        try {
+            const response = await Log_In({
+                email: email,
+                password: password,
+                device_token: "uulq84ejbkPeWTzIgZcDGqUAhbsY6ZPdbLyr61Y2sSLtXx-DtSS3XLqnuyWHNu1n6DbH0cURQeqc4FT5asddasdaN"
+            })
+            dispatch({ type: 'USER_LOGIN', payLoad: response.data.data })
+            navigate('BottomNavigation')
+        } catch (error) {
+            return (
+                setBackground(true),
+                setMessage('Your email is incorrect or does not exist')
+            )
+        }
     }
 
-    function validateEmail(email: string) {
-        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-    }
     return (
         <View style={{ flex: 1, backgroundColor: COLOR.Neutral.Neutral0, alignItems: 'center', justifyContent: 'center' }}>
             <View style={{ width: screenWidth }}>
@@ -74,8 +77,9 @@ export const LoginApp = () => {
                         borderWidth: 1,
                     } : { backgroundColor: COLOR.TextField }
                     ]}
-                    placeholder={'Your name'} />
-                {messeage ? <Text>{messeage}</Text> : null}
+                    placeholder={'Your name'}
+                    error={messeage} />
+
                 <AppInput
                     onValueChange={setPassword}
                     value={password}
@@ -87,16 +91,19 @@ export const LoginApp = () => {
                         borderWidth: 1,
                     } : { backgroundColor: COLOR.TextField }
                     ]}
+                    type={'password'}
                     placeholder={'Your password'}
                     secureTextEntry={true}
                 />
                 {/* {isMessage && messeage === 'Error your password!' ? <Text>{messeage}</Text> : null} */}
-
-                <TouchableOpacity
-                    onPress={onForgotPass}
-                    style={{ alignItems: 'flex-end' }}>
-                    <AppText styleText={[styles.titleInput, { marginTop: 16, marginBottom: 30 }]}>Forgot Password</AppText>
-                </TouchableOpacity>
+                <View style={{ flexDirection: 'row-reverse' }}>
+                    <AppButton
+                        onPress={() => navigate('ForgotPassword')}
+                        styleBtn={{ marginTop: 16, marginBottom: 30 }}
+                        children={'Forgot Password'}
+                        styleChildren={styles.titleInput}
+                        pathImage={0} />
+                </View>
                 <AppButton
                     onPress={checkLogin}
                     children={'Login'}
@@ -107,7 +114,7 @@ export const LoginApp = () => {
                 />
                 <View style={{ marginTop: 24, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                     <AppText style={styles.footerTitle}>Don't have an account? </AppText>
-                    <TouchableOpacity onPress={onRegister}>
+                    <TouchableOpacity onPress={() => navigate('RegisterApp')}>
                         <AppText styleText={[styles.footerTitle, { color: COLOR.Primary }]}>Register</AppText>
                     </TouchableOpacity>
 

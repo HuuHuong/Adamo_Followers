@@ -1,23 +1,24 @@
 import React from 'react'
 import { View, Text, ScrollView } from 'react-native'
-import { useNavigation } from '@react-navigation/core'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { COLOR, FakeData3, FontSize, screenWidth, SCREEN_ROUTER } from '../../../assets'
 import { AppAvatar } from '../../../components/AppAvatar'
 import { AppButton } from '../../../components/AppButton'
 import { AppIcon } from '../../../components/AppIcon'
 import { AppText } from '../../../components/AppText'
 import { styles } from './styles'
-
-type Home = NativeStackNavigationProp<SCREEN_ROUTER, 'Home'>
-export const Home = () => {
-    const navigation = useNavigation<Home>()
+import { useSelector } from 'react-redux'
+export const Home = (props: any) => {
+    const { navigation } = props
     const onSeeAll = () => {
         return
     }
     const onPurchase = () => {
         return navigation.navigate('PurchaseCoin')
     }
+
+    const dataUser = useSelector((store: any) => store.USER_INFOR.user.user)
+    console.log(dataUser);
+
     return (
         <ScrollView
             showsVerticalScrollIndicator={false}
@@ -27,10 +28,10 @@ export const Home = () => {
                     <View style={styles.introUser}>
                         <AppAvatar
                             styleAvatar={styles.imgAvatar}
-                            pathImage={require('../../../assets/icons/dog.png')} />
+                            pathImage={{ uri: dataUser.avatar }} />
                         <View>
                             <AppText styleText={styles.hello}>Hello</AppText>
-                            <AppText styleText={styles.headingTitle}>Matsuura Yuki</AppText>
+                            <AppText styleText={styles.headingTitle}>{dataUser.username}</AppText>
                         </View>
                     </View>
                     <View style={styles.newsNoti}>

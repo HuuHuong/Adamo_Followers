@@ -1,43 +1,68 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import { COLOR } from '../../../assets/Theme'
 import { AppButton } from '../../../components/AppButton/AppButton'
-import { AppIcon } from '../../../components/AppIcon/AppIcon'
 import { AppInput } from '../../../components/AppInput/AppInput'
 import { AppText } from '../../../components/AppText/AppText'
 import { FontSize, screenWidth } from '../../../assets/Spacing'
-import { useNavigation } from '@react-navigation/core'
-import { SCREEN_ROUTER } from '../../../assets/route'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { Signup } from '../../../services/API'
+import { Sign_Up } from '../../../services/API'
 import { styles } from './styles'
 import { AppPicker } from '../../../components/AppPicker'
 
-type RegisterApp = NativeStackNavigationProp<SCREEN_ROUTER, 'RegisterApp'>
-
-export const RegisterApp = () => {
-    const navigation = useNavigation<RegisterApp>()
+export const RegisterApp = (props: any) => {
+    const navigation = props
     const gender = ['Male', 'Female', 'Other']
     const year = []
     for (var i = 1800; i <= 2025; i++) {
         year.unshift(i.toString())
     }
-    const onSubmit = () => {
-        return navigation.navigate('VerificationCode')
+    const [genderSelected, setGenderSelected] = useState([])
+    const [yearSelected, setYearSelected] = useState()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [userName, setUserName] = useState('')
+    const [background, setBackground] = useState(Boolean)
+    const [backgroundPass, setBackgroundPass] = useState(Boolean)
+    const [messeage, setMessage] = useState('')
+    const [messagePass, setMessagePass] = useState('')
+    function validateEmail(email: string) {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
     }
-
-    const signUp = async () => {
+    const onSubmit = async () => {
         try {
-            const response = await Signup({
-
+            const response = await Sign_Up({
+                email: email,
+                password: password,
+                username: userName,
+                introduce_code: "81025117",
+                gender: 1,
+                age: yearSelected,
+                socials: [
+                ]
             })
-        }
-        catch (error) {
-            console.error(error);
+            console.log('rs', response);
+            navigation.navigate('VerificationCode')
+        } catch (error) {
+            console.error({ error });
 
+            if (validateEmail(email) === false)
+                return (
+                    setBackground(true),
+                    setMessage('Invalid your email')
+                )
+            if (password.length < 6)
+                return (
+                    setMessagePass('The password must be at least 6 characters.'),
+                    setBackgroundPass(true)
+                )
+            else if (password.length > 32)
+                return (
+                    setMessagePass('The password must not be greater than 32 characters.'),
+                    setBackgroundPass(true)
+                )
         }
     }
-
     return (
         <ScrollView
             showsVerticalScrollIndicator={false}
@@ -82,18 +107,38 @@ export const RegisterApp = () => {
                     />
                     <AppText styleText={styles.headingTitle2}>Follower account</AppText>
                     <AppInput
+                        onFocused={() => {
+                            return (setBackground(false), setMessage(''))
+
+                        }}
+                        onValueChange={setEmail}
+                        value={email}
                         children={'Email'}
                         placeholder={'example@gmail.com'}
                         styleText={styles.titleInput}
-                        stylesInput={styles.inputForm}
+                        stylesInput={[styles.inputForm, background ? {
+                            borderColor: 'red',
+                            borderWidth: 1,
+                        } : { backgroundColor: COLOR.TextField }]}
+                        error={messeage}
                     />
                     <AppInput
+                        onFocused={() => { return (setBackgroundPass(false), setMessagePass('')) }}
+                        error={messagePass}
+                        onValueChange={setPassword}
+                        value={password}
                         children={'Password'}
                         styleText={styles.titleInput}
-                        stylesInput={styles.inputForm}
+                        stylesInput={[styles.inputForm, backgroundPass ? {
+                            borderColor: 'red',
+                            borderWidth: 1,
+                        } : { backgroundColor: COLOR.TextField }
+                        ]}
                         secureTextEntry={true}
                     />
                     <AppInput
+                        onValueChange={setUserName}
+                        value={userName}
                         children={'Username'}
                         styleText={styles.titleInput}
                         stylesInput={styles.inputForm}
@@ -104,12 +149,17 @@ export const RegisterApp = () => {
                             children={'Gender'}
                             styleChildren={styles.titleInput}
                             arrayValue={gender}
+                            selectedValue={gender}
+                            onValueChange={setGenderSelected}
+                            currentValue={genderSelected}
                         />
                         <AppPicker
                             children={'Birth year'}
                             styleChildren={styles.titleInput}
                             stylePicker={styles.pickerForm}
                             arrayValue={year}
+                            onValueChange={setYearSelected}
+                            currentValue={yearSelected}
                         />
                     </View>
                     <AppInput

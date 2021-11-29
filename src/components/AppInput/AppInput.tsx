@@ -5,8 +5,10 @@ import {
     TextInput,
     TextStyle,
     KeyboardTypeOptions,
-    ViewStyle
+    ViewStyle,
+    TouchableOpacity
 } from 'react-native'
+import { AppIcon } from '../AppIcon'
 import { AppText } from '../AppText/AppText'
 
 interface InputProps {
@@ -22,7 +24,7 @@ interface InputProps {
     numpad?: boolean,
     placeholderTextColor?: string,
     value?: string,
-
+    error?: string
 }
 
 export const AppInput = (props: InputProps) => {
@@ -36,6 +38,8 @@ export const AppInput = (props: InputProps) => {
         value,
         styleText,
         onFocused,
+        type,
+        error,
         ...rest
     } = props
 
@@ -52,7 +56,10 @@ export const AppInput = (props: InputProps) => {
                 secureTextEntry={secureTextEntry}
                 placeholder={placeholder}
                 style={stylesInput}
+
             ></TextInput>
+            {error ? <Text>{error}</Text> : null}
+
         </View>
     )
 }

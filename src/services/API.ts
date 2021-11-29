@@ -10,5 +10,6 @@ const instance = axios.create({
     },
 });
 
-export const Login = (params: object) => instance.post(API_URL.AUTH.SIGN_IN, params) //signin
-export const Signup = (params: object) => instance.post(API_URL.AUTH.SIGN_UP, params) //signup
+export const Log_In = (params: object) => instance.post(API_URL.AUTH.SIGN_IN, params) //signin
+export const Sign_Up = (params: object) => instance.post(API_URL.AUTH.SIGN_UP, params) //signup
+export const Forgot_Password = (params: object) => instance.post(API_URL.AUTH.FORGOT_PASSWORD, params)
