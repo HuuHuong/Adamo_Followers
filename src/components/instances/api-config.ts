@@ -7,7 +7,8 @@ export const API_URL = {
         RESET_PASSWORD: 'auth/reset-password',
     },
 
-    ACCOUNT: {
+    APP: {
+        CATEGORY: 'user/category/8',
         LOGOUT: 'user/logout'
     }
 

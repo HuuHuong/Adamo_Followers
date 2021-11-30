@@ -4,24 +4,27 @@ import {
     Text,
     FlatListProps as PropsList,
     FlatList,
-    SectionListRenderItem
+    ListRenderItem,
+    ViewStyle,
 } from 'react-native'
 
 interface FlatListProps {
     data: any[],
-    renderItem: (e: any) => any;
-    keyExtractor: any
+    renderItem: ListRenderItem<any>;
+    keyExtractor?: any,
+    styleFlatList?: ViewStyle | ViewStyle[] | any
 
 }
 export const AppFlatlist = (props: FlatListProps) => {
     const {
         data,
         keyExtractor,
-        renderItem
+        renderItem,
+        styleFlatList
     } = props
 
     return (
-        <View>
+        <View style={[{ flex: 1 }, styleFlatList]}>
             <FlatList
                 keyExtractor={keyExtractor}
                 data={data}

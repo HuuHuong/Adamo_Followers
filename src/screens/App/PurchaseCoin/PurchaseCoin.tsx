@@ -8,10 +8,11 @@ import { AppText } from '../../../components/AppText'
 import { styles } from './styles'
 import { AppPayCoin } from '../../../components/AppPayCoin'
 import { AppIcon } from '../../../components/AppIcon'
+import { useSelector } from 'react-redux'
 
-type PurchaseCoin = NativeStackNavigationProp<SCREEN_ROUTER, 'PurchaseCoin'>
-export const PurchaseCoin = (props: PurchaseCoin) => {
-    const navigation = useNavigation<PurchaseCoin>()
+export const PurchaseCoin = (props: any) => {
+    const dataUser = useSelector((state: any) => state.USER_INFOR.user.user)
+    const { navigation } = props
     return (
         <ScrollView
             showsVerticalScrollIndicator={false}
@@ -55,7 +56,7 @@ export const PurchaseCoin = (props: PurchaseCoin) => {
                     />
                     <AppText styleText={[styles.headingTitle, { marginTop: 40 }]}>Your TomoCoin</AppText>
                     <AppText styleText={styles.title}>Current count (tc)</AppText>
-                    <AppText styleText={styles.currentCoin}>300</AppText>
+                    <AppText styleText={styles.currentCoin}>{dataUser.total_coins}</AppText>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <AppIcon pathImage={require('../../../assets/icons/Info.png')} />
                         <AppText styleText={[styles.headingTitle, { marginLeft: 10 }]}>Rules and terms</AppText>

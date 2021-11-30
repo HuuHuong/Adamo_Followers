@@ -85,7 +85,8 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         flexDirection: 'row-reverse',
         justifyContent: 'flex-end',
-        marginTop: 12
+        marginTop: 12,
+        alignItems: 'center'
     },
     titleBtn: {
         fontFamily: 'NotoSans-Regular',

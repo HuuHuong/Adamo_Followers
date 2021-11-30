@@ -11,10 +11,9 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { FontSize, screenWidth } from '../../../assets/Spacing'
 import { styles } from './styles'
 
-type VerificationCode = NativeStackNavigationProp<SCREEN_ROUTER, 'VerificationCode'>
 
-export const VerificationCode = () => {
-    const navigation = useNavigation<VerificationCode>()
+export const VerificationCode = (props: any) => {
+    const { navigation } = props
     const onVerify = () => {
         return navigation.navigate('ResetPassword')
     }

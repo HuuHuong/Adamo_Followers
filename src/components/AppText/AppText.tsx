@@ -8,16 +8,20 @@ import {
 
 interface TextProps extends TextProperties {
     children: string | undefined;
-    styleText?: ViewStyle | ViewStyle[] | any
+    styleText?: ViewStyle | ViewStyle[] | any,
+    numberOfLines?: number
 }
 
 export const AppText = (props: TextProps) => {
     const {
         children,
-        styleText
+        styleText,
+        numberOfLines
     } = props
 
     return (
-        <Text style={styleText}>{children}</Text>
+        <Text
+            numberOfLines={numberOfLines}
+            style={styleText}>{children}</Text>
     )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, ScrollView } from 'react-native'
 import { COLOR, FakeData3, FontSize, screenWidth, SCREEN_ROUTER } from '../../../assets'
 import { AppAvatar } from '../../../components/AppAvatar'
@@ -7,6 +7,7 @@ import { AppIcon } from '../../../components/AppIcon'
 import { AppText } from '../../../components/AppText'
 import { styles } from './styles'
 import { useSelector } from 'react-redux'
+import { Category_App, setToken } from '../../../services/API'
 export const Home = (props: any) => {
     const { navigation } = props
     const onSeeAll = () => {
@@ -15,9 +16,23 @@ export const Home = (props: any) => {
     const onPurchase = () => {
         return navigation.navigate('PurchaseCoin')
     }
+    const [category, setCategory] = useState()
+    const dataUser = useSelector((store: any) => store.USER_INFOR.user)
+    setToken(dataUser.token)
+    console.log(dataUser.token);
 
-    const dataUser = useSelector((store: any) => store.USER_INFOR.user.user)
-    console.log(dataUser);
+    useEffect(() => {
+        const getCategory = async () => {
+            try {
+                const response = await Category_App();
+                console.log('rs', response); // data tu api tra ve
+                // setCategory(response.data.data)
+            } catch (error) {
+                console.error({ error });
+            }
+        }
+        getCategory()
+    }, [])
 
     return (
         <ScrollView
@@ -28,10 +43,10 @@ export const Home = (props: any) => {
                     <View style={styles.introUser}>
                         <AppAvatar
                             styleAvatar={styles.imgAvatar}
-                            pathImage={{ uri: dataUser.avatar }} />
+                            pathImage={{ uri: dataUser.user.avatar }} />
                         <View>
                             <AppText styleText={styles.hello}>Hello</AppText>
-                            <AppText styleText={styles.headingTitle}>{dataUser.username}</AppText>
+                            <AppText styleText={styles.headingTitle}>{dataUser.user.username}</AppText>
                         </View>
                     </View>
                     <View style={styles.newsNoti}>

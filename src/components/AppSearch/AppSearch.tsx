@@ -3,29 +3,67 @@ import { SearchBar } from 'react-native-elements';
 import {
     View,
     Text,
-    TextInputProps as PropsSearch
+    TextInputProps as PropsSearch,
+    TextInput,
+    StyleSheet,
+    ViewStyle
 } from 'react-native'
+import { AppIcon } from '../AppIcon';
+import { COLOR } from '../../assets';
+import { AppButton } from '../AppButton';
 
 interface TextInputProps extends PropsSearch {
     placeholder?: string
     value: string
-    onChangeText: () => any
+    onChangeText?: (e: string) => void
     onFocus?: () => void;
+    type?: string,
+    onPress?: () => void
 }
 export const AppSearch = (props: TextInputProps) => {
     const {
         placeholder,
         value,
-        onChangeText
+        onChangeText,
+        type,
+        onPress
     } = props
 
     const [search, setSearch] = useState('')
     return (
-        // <SearchBar
-        //     placeholder={placeholder}
-        //     onChangeText={onChangeText}
-        //     value={value}
-        // />
-        <View></View>
+        <View style={styles.searchForm}>
+            <AppIcon
+                styleIcon={styles.iconSearch}
+                pathImage={require('../../assets/icons/search.png')} />
+            <TextInput
+                style={{ width: '75%' }}
+                value={value}
+                onChangeText={onChangeText}
+                placeholder={placeholder}></TextInput>
+            {type === 'filter' && (
+                <View>
+                    <AppButton
+                        onPress={onPress}
+                        styleBtn={{ flexDirection: 'row' }}
+                        pathImage={require('../../assets/icons/filter.png')}
+                    />
+                </View>
+            )}
+        </View>
     )
 }
+
+const styles = StyleSheet.create({
+    searchForm: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: COLOR.TextField,
+        borderRadius: 8,
+        width: '100%'
+    },
+    iconSearch: {
+        marginVertical: 17,
+        marginHorizontal: 17,
+
+    }
+})

@@ -10,7 +10,7 @@ import { styles } from './styles'
 import { AppPicker } from '../../../components/AppPicker'
 
 export const RegisterApp = (props: any) => {
-    const navigation = props
+    const { navigation } = props
     const gender = ['Male', 'Female', 'Other']
     const year = []
     for (var i = 1800; i <= 2025; i++) {
@@ -37,8 +37,16 @@ export const RegisterApp = (props: any) => {
                 username: userName,
                 introduce_code: "81025117",
                 gender: 1,
-                age: yearSelected,
+                age: 2000,
                 socials: [
+                    {
+                        "id": 1,
+                        "content": "https://www.facebook.com/zo.jackson.31/"
+                    },
+                    {
+                        "id": 3,
+                        "content": "https://www.facebook.com/zo.jackson.31/"
+                    }
                 ]
             })
             console.log('rs', response);

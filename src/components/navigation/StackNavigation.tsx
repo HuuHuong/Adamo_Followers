@@ -10,10 +10,10 @@ import { BottomNavigation } from './BottomNavigation'
 import { Home } from '../../screens/App/HomeScreen/Home'
 import { Communities } from '../../screens/App/Communities/Communities'
 import { Account } from '../../screens/App/Account/Account'
-import { SCREEN_ROUTER } from '../../assets/route'
 import { VerificationCode } from '../../screens/Auth/VerificationCode/VerificationCode'
 import { ResetSuccess } from '../../screens/Auth/ResetPassword/ResetSuccess'
 import { PurchaseCoin } from '../../screens/App/PurchaseCoin/PurchaseCoin'
+import { JoinCommunity } from '../../screens/App/JoinCommunity/JoinCommunity'
 
 const AuthStack = createNativeStackNavigator()
 export const StackNavigation = () => {
@@ -55,6 +55,7 @@ export const CommunityStackNavigation = () => {
         <View style={{ flex: 1 }}>
             <CommunityStack.Navigator screenOptions={{ headerShown: false }}>
                 <CommunityStack.Screen name='Communities' component={Communities} />
+                <CommunityStack.Screen name='JoinCommunity' component={JoinCommunity} />
             </CommunityStack.Navigator>
         </View>
     )

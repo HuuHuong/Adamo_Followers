@@ -38,7 +38,7 @@ export const AppButton = (props: ButtonProps) => {
     return (
         <TouchableOpacity
             onPress={onPress}
-            style={[styleBtn, { alignItems: 'center' }]}>
+            style={styleBtn}>
             <AppText styleText={styleChildren}>{children}</AppText>
             <AppIcon pathImage={pathImage} styleIcon={styleIcon} />
         </TouchableOpacity>
