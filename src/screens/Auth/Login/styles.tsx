@@ -44,10 +44,6 @@ export
             fontFamily: 'NotoSans-Bold',
             marginRight: 10
         },
-        iconBtn: {
-            with: 20,
-            height: 20
-        },
         footerTitle: {
             fontSize: FontSize.Font16,
             color: COLOR.Neutral.Neutral8,

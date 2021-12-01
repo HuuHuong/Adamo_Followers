@@ -14,6 +14,7 @@ import { VerificationCode } from '../../screens/Auth/VerificationCode/Verificati
 import { ResetSuccess } from '../../screens/Auth/ResetPassword/ResetSuccess'
 import { PurchaseCoin } from '../../screens/App/PurchaseCoin/PurchaseCoin'
 import { JoinCommunity } from '../../screens/App/JoinCommunity/JoinCommunity'
+import { ProfileUser } from '../../screens/App/ProfileUser/ProfileUser'
 
 const AuthStack = createNativeStackNavigator()
 export const StackNavigation = () => {
@@ -67,6 +68,8 @@ export const AccountStackNavigation = () => {
         <View style={{ flex: 1 }}>
             <AccountStack.Navigator screenOptions={{ headerShown: false }}>
                 <AccountStack.Screen name='Account' component={Account} />
+                <AccountStack.Screen name='ProfileUser' component={ProfileUser} />
+
             </AccountStack.Navigator>
         </View>
     )

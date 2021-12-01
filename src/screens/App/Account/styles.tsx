@@ -39,6 +39,20 @@ export const styles = StyleSheet.create({
         fontSize: FontSize.Font18,
         color: COLOR.Neutral.Neutral10,
         marginLeft: 16
-
+    },
+    btnCancel: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderRadius: 8,
+        paddingVertical: 17,
+        marginTop: 20
+    },
+    cancelAcc: {
+        fontFamily: 'NotoSans-Bold',
+        fontSize: FontSize.Font16,
+        color: COLOR.Sematic.Sematic4,
+        marginRight: 10
     }
 })

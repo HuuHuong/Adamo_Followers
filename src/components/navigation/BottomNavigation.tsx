@@ -32,11 +32,8 @@ export const BottomNavigation = () => {
                         }
                         return <AppIcon
                             pathImage={iconName}
-                            styleIcon={{
-                                with: 30,
-                                height: 30,
-                                marginTop: 25
-                            }} />
+
+                        />
                     },
                     tabBarStyle: { height: 80, borderTopWidth: 2, borderColor: COLOR.Primary },
                     tabBarActiveTintColor: COLOR.Neutral.Neutral8,

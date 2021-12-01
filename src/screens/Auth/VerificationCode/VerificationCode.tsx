@@ -45,7 +45,6 @@ export const VerificationCode = (props: any) => {
                     children={'Verify'}
                     styleChildren={styles.textBtn}
                     pathImage={require('../../../assets/icons/Check.png')}
-                    // styleIcon={{with: 20, height: 20}}
                     styleBtn={styles.btn}
                 />
                 <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 22 }}>

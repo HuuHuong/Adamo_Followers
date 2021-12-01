@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 
 interface TextProps extends TextProperties {
-    children: string | undefined;
+    children: string;
     styleText?: ViewStyle | ViewStyle[] | any,
     numberOfLines?: number
 }

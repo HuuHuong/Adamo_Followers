@@ -36,7 +36,7 @@ export const AppSearch = (props: TextInputProps) => {
                 styleIcon={styles.iconSearch}
                 pathImage={require('../../assets/icons/search.png')} />
             <TextInput
-                style={{ width: '75%' }}
+                style={{ width: '72%' }}
                 value={value}
                 onChangeText={onChangeText}
                 placeholder={placeholder}></TextInput>

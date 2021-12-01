@@ -8,7 +8,7 @@ import { AppInput } from '../../../components/AppInput/AppInput'
 import { AppText } from '../../../components/AppText/AppText'
 import { styles } from './styles'
 import { FakeData } from '../../../assets/FakeData'
-import { Log_In } from '../../../services/API'
+import { Log_In, setToken } from '../../../services/API'
 import { useDispatch } from "react-redux"
 
 export const LoginApp = (props: any) => {
@@ -20,26 +20,6 @@ export const LoginApp = (props: any) => {
     const [password, setPassword] = useState<any>('')
     const [background, setBackground] = useState(Boolean)
     const [messeage, setMessage] = useState('')
-    // const checkLogin = () => {
-    //     FakeData.map((item) => {
-    //         if (item.email === email && item.password === password)
-    //             return navigate('BottomNavigation')
-    //         else if (validateEmail(email) === false)
-    //             return (
-    //                 setBackground(true),
-    //                 setMessage('Invalid your email')
-    //             )
-    //         else if ((item.email === email && item.password != password) || item.email !== email)
-    //             return (
-    //                 setMessage('Your email or password is incorect')
-    //             )
-
-    //     })
-    // }
-    // function validateEmail(email: string) {
-    //     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    //     return re.test(email);
-    // }
     const checkLogin = async () => {
         try {
             const response = await Log_In({
@@ -48,8 +28,10 @@ export const LoginApp = (props: any) => {
                 device_token: "uulq84ejbkPeWTzIgZcDGqUAhbsY6ZPdbLyr61Y2sSLtXx-DtSS3XLqnuyWHNu1n6DbH0cURQeqc4FT5asddasdaN"
             })
             dispatch({ type: 'USER_LOGIN', payLoad: response.data.data })
+            setToken(response.data.data.token)
             navigate('BottomNavigation')
         } catch (error) {
+            console.log({ error })
             return (
                 setBackground(true),
                 setMessage('Your email is incorrect or does not exist')
@@ -110,7 +92,6 @@ export const LoginApp = (props: any) => {
                     styleChildren={styles.textBtn}
                     styleBtn={styles.btn}
                     pathImage={require('../../../assets/icons/ArrowRight.png')}
-                    styleIcon={styles.iconBtn}
                 />
                 <View style={{ marginTop: 24, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                     <AppText style={styles.footerTitle}>Don't have an account? </AppText>

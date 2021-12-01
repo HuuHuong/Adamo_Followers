@@ -6,7 +6,7 @@ import { AppText } from '../AppText';
 
 interface PickerProps {
     selectedValue?: string[] | number[] | any
-    onValueChange?: (itemValue: any, itemIndex: number) => void;
+    onValueChange?: (itemValue: any, itemIndex: any) => void;
     stylePicker?: ViewStyle | ViewStyle[] | any
     arrayValue: any[]
     children?: string

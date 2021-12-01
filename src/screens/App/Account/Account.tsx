@@ -46,7 +46,7 @@ export const Account = (props: any) => {
                 </View>
             </View>
             <AppButton
-                onPress={() => { }}
+                onPress={() => navigation.navigate('ProfileUser')}
                 styleBtn={styles.btn}
                 children={'Your Profile'}
                 styleChildren={styles.title}
@@ -67,11 +67,17 @@ export const Account = (props: any) => {
                 pathImage={require('../../../assets/icons/LockKeyOpen.png')}
             />
             <AppButton
-                onPress={() => { }}
+                onPress={() => navigation.navigate('LoginApp')}
                 styleBtn={styles.btn}
                 children={'Log Out'}
                 styleChildren={styles.title}
                 pathImage={require('../../../assets/icons/SignOut.png')}
+            />
+            <AppButton
+                styleBtn={styles.btnCancel}
+                children={'Cancel Account'}
+                styleChildren={styles.cancelAcc}
+                pathImage={require('../../../assets/icons/Warning.png')}
             />
         </View>
     )
