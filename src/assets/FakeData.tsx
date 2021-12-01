@@ -80,3 +80,40 @@ export const FakeData3 = [{
     numMember: 256,
     img: require('../assets/icons/automovie.png')
 }]
+
+export const social = [{
+    id: 1,
+    img: require('../assets/icons/youtube.png'),
+    title: '@CongNguyen'
+},
+{
+    id: 2,
+    img: require('../assets/icons/instagram.png'),
+    title: '@CongNguyen'
+},
+{
+    id: 3,
+    img: require('../assets/icons/twitter.png'),
+    title: '@CongNguyen'
+},
+{
+    id: 4,
+    img: require('../assets/icons/facebook.png'),
+    title: '@CongNguyen'
+}]
+
+export const communitiesJoined = [{
+    id: 1,
+    img: require('../assets/icons/anime.png'),
+    title: 'Anime'
+},
+{
+    id: 2,
+    img: require('../assets/icons/anime.png'),
+    title: 'Anime'
+},
+{
+    id: 3,
+    img: require('../assets/icons/anime.png'),
+    title: 'AnimeAnime'
+}]

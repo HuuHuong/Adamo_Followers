@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
         color: COLOR.Neutral.Neutral10,
         textAlign: 'center',
         marginBottom: 20,
+        marginTop: 40
     },
     itemFlatlist: {
         flexDirection: 'row',

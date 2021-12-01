@@ -14,13 +14,14 @@ import { AppIcon } from '../AppIcon'
 import { AppText } from '../AppText'
 
 interface ButtonProps extends TouchableOpacityProps {
-    children?: string | undefined,
+    children?: JSX.Element | JSX.Element[] | string | null,
     uri?: string,
     pathImage: ImageSourcePropType,
     onPress?: () => void,
     styleBtn?: ViewStyle | ViewStyle[] | any,
     styleIcon?: ViewStyle | ViewStyle[] | any,
     styleChildren?: ViewStyle | ViewStyle[] | any,
+    activeOpacity?: number
 }
 
 export const AppButton = (props: ButtonProps) => {
@@ -32,15 +33,17 @@ export const AppButton = (props: ButtonProps) => {
         onPress,
         styleBtn,
         styleIcon,
+        activeOpacity,
         ...rest
     } = props
 
     return (
         <TouchableOpacity
+            activeOpacity={activeOpacity}
             onPress={onPress}
             style={styleBtn}>
-            <AppText styleText={styleChildren}>{children}</AppText>
-            <AppIcon pathImage={pathImage} styleIcon={styleIcon} />
+            {!!children && <AppText styleText={styleChildren}>{children}</AppText>}
+            {!!pathImage && <AppIcon pathImage={pathImage} styleIcon={styleIcon} />}
         </TouchableOpacity>
     )
 }

@@ -17,6 +17,8 @@ export const JoinCommunity = (props: any) => {
     const { navigation } = props
     const [textFilter, setTextFilter] = useState('')
     const inforCommunity = useSelector((store: any) => store.COMMUNITIES.communityForum)
+    const [isJoined, setIsJoined] = useState<Boolean>(false)
+    console.log(isJoined)
 
     return (
         <ScrollView
@@ -26,7 +28,6 @@ export const JoinCommunity = (props: any) => {
                 styleBtn={{
                     marginBottom: 24,
                     marginTop: 40,
-                    flexDirection: 'row',
                     width: 25
                 }}
                 onPress={() => navigation.goBack()}
@@ -41,9 +42,18 @@ export const JoinCommunity = (props: any) => {
                 <AppText styleText={styles.headingTitle}>{inforCommunity.title}</AppText>
                 <AppText styleText={styles.title}>{inforCommunity.numMember} members</AppText>
                 <AppButton
-                    children={'Participate'}
+                    activeOpacity={1}
+                    onPress={() => setIsJoined(!isJoined)}
+                    children={!isJoined ?
+                        'Participate' : 'Leaving'
+                    }
+                    styleBtn={[styles.btn,
+                    !isJoined ? { backgroundColor: COLOR.Primary } : {
+                        backgroundColor: COLOR.Sematic.Sematic4
+                    }]}
                     styleChildren={styles.textBtn}
-                    pathImage={0}
+                    pathImage={isJoined ? require('../../../assets/icons/SignOut.png') : null}
+                    styleIcon={{ width: 19, height: 19 }}
                 />
             </ImageBackground>
             <View style={{

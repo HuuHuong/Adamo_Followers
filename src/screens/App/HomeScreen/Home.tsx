@@ -9,9 +9,6 @@ import { styles } from './styles'
 import { useSelector } from 'react-redux'
 export const Home = (props: any) => {
 	const { navigation } = props
-	const onSeeAll = () => {
-		return
-	}
 	const onPurchase = () => {
 		return navigation.navigate('PurchaseCoin')
 	}
@@ -70,7 +67,7 @@ export const Home = (props: any) => {
 							)
 					})}
 					<AppButton
-						onPress={onSeeAll}
+						onPress={() => navigation.navigate('Communities')}
 						styleBtn={styles.seeAll}
 						children={'See all'}
 						styleChildren={styles.txtBtn}

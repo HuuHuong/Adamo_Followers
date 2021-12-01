@@ -3,6 +3,9 @@ import { StyleSheet, Dimensions } from "react-native"
 const { width, height } = Dimensions.get('screen')
 export const screenWidth = width - 50
 export const FontSize = {
+    Font11: 11,
+    Font12: 12,
+    Font13: 13,
     Font14: 14,
     Font15: 15,
     Font16: 16,

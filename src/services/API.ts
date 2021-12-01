@@ -1,24 +1,14 @@
 import axios from 'axios'
 import { API_URL } from '../components/instances/api-config';
-const headerDefault = {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-}
 
 const instance = axios.create({
     baseURL: 'https://follower-matching-api.adamo.tech/api/',
     timeout: 60000,
+    headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+    }
 });
-
-// export const setToken = (_token: string) => {
-//     instance.request({
-//         headers: {
-//             ...headerDefault,
-//             token: `${_token}`
-//         }
-//     })
-
-// }
 
 export const setToken = (_token: string) => {
     axios.defaults.headers.common['Authorization'] = '';

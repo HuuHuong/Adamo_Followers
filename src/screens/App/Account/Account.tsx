@@ -6,14 +6,17 @@ import { AppAvatar } from '../../../components/AppAvatar'
 import { AppButton } from '../../../components/AppButton'
 import { AppIcon } from '../../../components/AppIcon'
 import { AppText } from '../../../components/AppText'
+import { setToken } from '../../../services/API'
 import { styles } from './styles'
 export const Account = (props: any) => {
     const { navigation } = props
     const [copyID, setCopyID] = useState('')
     const dataUser = useSelector((store: any) => store.USER_INFOR.user)
-    // console.log(dataUser);
-    // console.log(copyID);
-
+    const onLogOut = () => {
+        return (
+            setToken(''), navigation.navigate('LoginApp')
+        )
+    }
     return (
         <View style={{
             flex: 1,
@@ -67,7 +70,7 @@ export const Account = (props: any) => {
                 pathImage={require('../../../assets/icons/LockKeyOpen.png')}
             />
             <AppButton
-                onPress={() => navigation.navigate('LoginApp')}
+                onPress={onLogOut}
                 styleBtn={styles.btn}
                 children={'Log Out'}
                 styleChildren={styles.title}

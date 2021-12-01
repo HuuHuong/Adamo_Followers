@@ -20,15 +20,17 @@ export const styles = StyleSheet.create({
         fontWeight: '500',
         color: COLOR.Neutral.Neutral2
     },
-    textBtn: {
-        marginTop: 30,
+    btn: {
+        flexDirection: 'row',
         paddingHorizontal: 32,
         paddingVertical: 16,
-        backgroundColor: COLOR.Primary,
+        marginTop: 30,
         borderRadius: 8,
+    },
+    textBtn: {
         fontFamily: 'NotoSans-Bold',
         fontSize: FontSize.Font16,
-        color: COLOR.Neutral.Neutral0
+        color: COLOR.Neutral.Neutral0,
     },
     forumHeading: {
         fontFamily: 'NotoSans-Bold',
