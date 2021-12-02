@@ -18,6 +18,7 @@ import { ProfileUser } from '../../screens/App/ProfileUser/ProfileUser'
 import { Approval } from '../../screens/App/Approval/Approval'
 import { FriendsRequest } from '../../screens/App/FriendsRequest/FriendsRequest'
 import { ChangePassword } from '../../screens/App/ChangePassword/ChangePassword'
+import { BlockList } from '../../screens/App/BlockList/BlockList'
 
 const AuthStack = createNativeStackNavigator()
 export const StackNavigation = () => {
@@ -72,6 +73,7 @@ export const AccountStackNavigation = () => {
             <AccountStack.Navigator screenOptions={{ headerShown: false }}>
                 <AccountStack.Screen name='Account' component={Account} />
                 <AccountStack.Screen name='ProfileUser' component={ProfileUser} />
+                <AccountStack.Screen name='BlockList' component={BlockList} />
                 <AccountStack.Screen name='Approval' component={Approval} />
                 <AccountStack.Screen name='FriendsRequest' component={FriendsRequest} />
                 <AccountStack.Screen name='ChangePassword' component={ChangePassword} />

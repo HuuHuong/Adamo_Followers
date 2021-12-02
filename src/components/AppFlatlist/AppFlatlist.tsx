@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 
 interface FlatListProps {
-    data: any[],
+    data: any[] | undefined,
     renderItem: ListRenderItem<any>;
     keyExtractor?: any,
     styleFlatList?: ViewStyle | ViewStyle[] | any

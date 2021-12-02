@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     View,
     Text,
@@ -11,6 +11,7 @@ import { AppButton } from '../../../components/AppButton'
 import { AppIcon } from '../../../components/AppIcon'
 import { AppSearch } from '../../../components/AppSearch'
 import { AppText } from '../../../components/AppText'
+import { Detail_Category } from '../../../services/API'
 import { styles } from './styles'
 
 export const JoinCommunity = (props: any) => {
@@ -19,7 +20,18 @@ export const JoinCommunity = (props: any) => {
     const inforCommunity = useSelector((store: any) => store.COMMUNITIES.communityForum)
     const [isJoined, setIsJoined] = useState<Boolean>(false)
     console.log(isJoined)
+    useEffect(() => {
+        const detailCategory = async () => {
+            try {
+                const response = await Detail_Category(inforCommunity.id)
+                console.log(response);
 
+            } catch (error) {
+                console.error({ error });
+
+            }
+        }
+    })
     return (
         <ScrollView
             showsVerticalScrollIndicator={false}
@@ -36,11 +48,11 @@ export const JoinCommunity = (props: any) => {
             <ImageBackground
                 imageStyle={{ borderRadius: 8 }}
                 style={styles.backgroundImg}
-                source={inforCommunity.img}
+                source={{ uri: inforCommunity.image }}
                 resizeMode={'cover'}
             >
                 <AppText styleText={styles.headingTitle}>{inforCommunity.title}</AppText>
-                <AppText styleText={styles.title}>{inforCommunity.numMember} members</AppText>
+                <AppText styleText={styles.title}>{inforCommunity.total_members} members</AppText>
                 <AppButton
                     activeOpacity={1}
                     onPress={() => setIsJoined(!isJoined)}

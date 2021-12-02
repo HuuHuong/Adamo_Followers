@@ -56,7 +56,7 @@ export const Account = (props: any) => {
                 pathImage={require('../../../assets/icons/UserCircle.png')}
             />
             <AppButton
-                onPress={() => { }}
+                onPress={() => navigation.navigate('BlockList')}
                 styleBtn={styles.btn}
                 children={'Block List'}
                 styleChildren={styles.title}

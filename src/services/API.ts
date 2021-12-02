@@ -1,5 +1,7 @@
 import axios from 'axios'
+import { useSelector } from 'react-redux';
 import { API_URL } from '../components/instances/api-config';
+const idCategory = useSelector((store: any) => store.COMMUNITIES.communityForum)
 
 const instance = axios.create({
     baseURL: 'https://follower-matching-api.adamo.tech/api/',
@@ -23,5 +25,7 @@ export const setToken = (_token: string) => {
 export const Log_In = (params: object) => instance.post(API_URL.AUTH.SIGN_IN, params) //signin
 export const Sign_Up = (params: object) => instance.post(API_URL.AUTH.SIGN_UP, params) //signup
 export const Forgot_Password = (params: object) => instance.post(API_URL.AUTH.FORGOT_PASSWORD, params)
-export const Category_App = () => instance.get(API_URL.APP.CATEGORY)
+export const Category_App = () => instance.get(API_URL.APP.CATEGORIES)
 export const Change_Password = (params: object) => instance.post(API_URL.APP.CHANGE_PASSWORD, params)
+export const Block_List = () => instance.get(API_URL.APP.BLOCKLIST)
+export const Detail_Category = (id: number) => instance.get(API_URL.APP.CATEGORIES + '/' + id)

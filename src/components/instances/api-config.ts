@@ -1,3 +1,5 @@
+// import { useSelector } from "react-redux"
+// const id_community = useSelector((store: any) => store.COMMUNITIES.communityForum)
 export const API_URL = {
     AUTH: {
         SIGN_UP: 'auth/signup',
@@ -8,9 +10,11 @@ export const API_URL = {
     },
 
     APP: {
-        CATEGORY: 'user/category/8',
+        CATEGORIES: 'user/categories',
+        BLOCKLIST: 'user/friends/block',
         LOGOUT: 'user/logout',
-        CHANGE_PASSWORD: 'user/passwords'
+        CHANGE_PASSWORD: 'user/passwords',
+        DETAIL_CATEGORY: 'user/categories'
     }
 
 }
