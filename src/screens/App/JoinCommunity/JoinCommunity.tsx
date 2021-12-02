@@ -53,7 +53,7 @@ export const JoinCommunity = (props: any) => {
                     }]}
                     styleChildren={styles.textBtn}
                     pathImage={isJoined ? require('../../../assets/icons/SignOut.png') : null}
-                    styleIcon={{ width: 19, height: 19 }}
+                    styleIcon={{ width: 19, height: 19, marginLeft: 10 }}
                 />
             </ImageBackground>
             <View style={{

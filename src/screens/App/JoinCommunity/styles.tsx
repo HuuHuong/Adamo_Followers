@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 16,
         marginTop: 30,
         borderRadius: 8,
+        alignItems: 'center'
     },
     textBtn: {
         fontFamily: 'NotoSans-Bold',

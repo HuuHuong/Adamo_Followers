@@ -16,7 +16,7 @@ import { AppText } from '../AppText'
 interface ButtonProps extends TouchableOpacityProps {
     children?: JSX.Element | JSX.Element[] | string | null,
     uri?: string,
-    pathImage: ImageSourcePropType,
+    pathImage?: ImageSourcePropType,
     onPress?: () => void,
     styleBtn?: ViewStyle | ViewStyle[] | any,
     styleIcon?: ViewStyle | ViewStyle[] | any,

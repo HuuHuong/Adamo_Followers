@@ -161,7 +161,9 @@ export const ProfileUser = (props: any) => {
                                 joined thanks to you! You get 300tm!</AppText>
                         </View>
                     </View>
-                    <TouchableOpacity style={styles.btnFooter}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('Approval')}
+                        style={styles.btnFooter}>
                         <AppText styleText={styles.titleFooter}>Waiting for approval</AppText>
                         <View style={{
                             width: 28,
@@ -174,7 +176,9 @@ export const ProfileUser = (props: any) => {
                             <AppText styleText={styles.numReminders}>5</AppText>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.btnFooter}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('FriendsRequest')}
+                        style={styles.btnFooter}>
                         <AppText styleText={styles.titleFooter}>Friend request sent</AppText>
                         <View style={{
                             width: 28,

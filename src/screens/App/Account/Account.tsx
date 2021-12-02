@@ -63,7 +63,7 @@ export const Account = (props: any) => {
                 pathImage={require('../../../assets/icons/Prohibit.png')}
             />
             <AppButton
-                onPress={() => { }}
+                onPress={() => navigation.navigate('ChangePassword')}
                 styleBtn={styles.btn}
                 children={'Change Password'}
                 styleChildren={styles.title}

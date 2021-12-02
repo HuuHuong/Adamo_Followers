@@ -117,3 +117,70 @@ export const communitiesJoined = [{
     img: require('../assets/icons/anime.png'),
     title: 'AnimeAnime'
 }]
+
+export const ApprovalList = [{
+    id: 1,
+    username: 'AnnetteBlack',
+    avt: require('../assets/icons/chicken.png'),
+    time: '2 days ago',
+    numFriends: 2050,
+    communities: [{
+        communities_id: 1,
+        communities_img: require('../assets/icons/gamming.png'),
+        communities_name: 'Gamming'
+    },
+    {
+        communities_id: 2,
+        communities_img: require('../assets/icons/gamming.png'),
+        communities_name: 'Gamming'
+    },
+    {
+        communities_id: 3,
+        communities_img: require('../assets/icons/gamming.png'),
+        communities_name: 'Gamming'
+    }]
+},
+{
+    id: 2,
+    username: 'AnnetteBlack',
+    avt: require('../assets/icons/chicken.png'),
+    time: '2 days ago',
+    numFriends: 2050,
+    communities: [{
+        communities_id: 1,
+        communities_img: require('../assets/icons/gamming.png'),
+        communities_name: 'Gamming'
+    },
+    {
+        communities_id: 2,
+        communities_img: require('../assets/icons/gamming.png'),
+        communities_name: 'Gamming'
+    },
+    {
+        communities_id: 3,
+        communities_img: require('../assets/icons/gamming.png'),
+        communities_name: 'Gamming'
+    }]
+},
+{
+    id: 3,
+    username: 'AnnetteBlack',
+    avt: require('../assets/icons/chicken.png'),
+    time: '2 days ago',
+    numFriends: 2050,
+    communities: [{
+        communities_id: 1,
+        communities_img: require('../assets/icons/gamming.png'),
+        communities_name: 'Gamming'
+    },
+    {
+        communities_id: 2,
+        communities_img: require('../assets/icons/gamming.png'),
+        communities_name: 'Gamming'
+    },
+    {
+        communities_id: 3,
+        communities_img: require('../assets/icons/gamming.png'),
+        communities_name: 'Gamming'
+    }]
+}]

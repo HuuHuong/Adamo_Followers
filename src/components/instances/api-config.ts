@@ -9,7 +9,8 @@ export const API_URL = {
 
     APP: {
         CATEGORY: 'user/category/8',
-        LOGOUT: 'user/logout'
+        LOGOUT: 'user/logout',
+        CHANGE_PASSWORD: 'user/passwords'
     }
 
 }

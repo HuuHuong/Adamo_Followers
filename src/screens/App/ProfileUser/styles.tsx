@@ -87,7 +87,8 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 24,
         backgroundColor: COLOR.Neutral.Neutral1,
         paddingVertical: 20,
-        marginBottom: 12
+        marginBottom: 12,
+        borderRadius: 8
     },
     titleFooter: {
         fontFamily: 'NotoSans-Regular',

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import { COLOR, FakeData3, screenWidth } from '../../../assets'
-import { AppButton } from '../../../components/AppButton'
 import { AppFlatlist } from '../../../components/AppFlatlist'
 import { AppIcon } from '../../../components/AppIcon'
 import { AppSearch } from '../../../components/AppSearch'

@@ -11,15 +11,17 @@ const instance = axios.create({
 });
 
 export const setToken = (_token: string) => {
-    axios.defaults.headers.common['Authorization'] = '';
-    delete axios.defaults.headers.common['Authorization'];
+    instance.defaults.headers.common['Authorization'] = '';
+    delete instance.defaults.headers.common['Authorization'];
+
 
     if (_token) {
-        axios.defaults.headers.common['Authorization'] = `${_token}`;
+        instance.defaults.headers.common['Authorization'] = `${_token}`;
     }
 }
 
 export const Log_In = (params: object) => instance.post(API_URL.AUTH.SIGN_IN, params) //signin
 export const Sign_Up = (params: object) => instance.post(API_URL.AUTH.SIGN_UP, params) //signup
 export const Forgot_Password = (params: object) => instance.post(API_URL.AUTH.FORGOT_PASSWORD, params)
-export const Category_App = () => instance.get(API_URL.APP.CATEGORY,)
+export const Category_App = () => instance.get(API_URL.APP.CATEGORY)
+export const Change_Password = (params: object) => instance.post(API_URL.APP.CHANGE_PASSWORD, params)
