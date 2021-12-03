@@ -58,5 +58,29 @@ export const styles = StyleSheet.create({
         fontSize: FontSize.Font24,
         color: COLOR.Neutral.Neutral10,
         marginBottom: 25
+    },
+    avt: {
+        width: 52,
+        height: 52,
+        borderRadius: 100
+    },
+    userForum: {
+        fontFamily: 'NotoSans-Bold',
+        fontSize: FontSize.Font16,
+        color: COLOR.DarkPrimary,
+        marginBottom: 4
+    },
+    totalFriends: {
+        fontFamily: 'NotoSans-Bold',
+        fontSize: FontSize.Font14,
+        color: COLOR.Neutral.Neutral8,
+        marginRight: 4
+    },
+    userIntro: {
+        fontFamily: 'NotoSans-Regular',
+        fontSize: FontSize.Font14,
+        fontWeight: '400',
+        color: COLOR.Neutral.Neutral6,
+        marginTop: 8
     }
 })

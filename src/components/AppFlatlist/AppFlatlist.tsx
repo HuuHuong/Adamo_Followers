@@ -13,14 +13,15 @@ interface FlatListProps {
     renderItem: ListRenderItem<any>;
     keyExtractor?: any,
     styleFlatList?: ViewStyle | ViewStyle[] | any
-
+    listHeader?: () => any
 }
 export const AppFlatlist = (props: FlatListProps) => {
     const {
         data,
         keyExtractor,
         renderItem,
-        styleFlatList
+        styleFlatList,
+        listHeader
     } = props
 
     return (
@@ -30,6 +31,7 @@ export const AppFlatlist = (props: FlatListProps) => {
                 data={data}
                 renderItem={renderItem}
                 showsVerticalScrollIndicator={false}
+                ListHeaderComponent={listHeader}
             >
             </FlatList>
         </View>

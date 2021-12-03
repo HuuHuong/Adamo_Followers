@@ -11,10 +11,12 @@ export const API_URL = {
 
     APP: {
         CATEGORIES: 'user/categories',
+        DETAIL_CATEGORY: 'user/category',
+        JOIN_COMMUNITY: 'user/communities/join',
+        LEAVE_COMMUNITY: 'user/communities/leave',
         BLOCKLIST: 'user/friends/block',
         LOGOUT: 'user/logout',
         CHANGE_PASSWORD: 'user/passwords',
-        DETAIL_CATEGORY: 'user/categories'
     }
 
 }

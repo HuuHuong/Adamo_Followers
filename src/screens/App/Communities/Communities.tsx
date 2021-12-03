@@ -23,7 +23,7 @@ export const Communities = (props: any) => {
         const getCategories = async () => {
             try {
                 const response = await Category_App()
-                setListCategories(response.data.data.categories.data)
+                setListCategories(response?.data.data.categories.data)
                 console.log(response);
 
             } catch (error) {
@@ -42,8 +42,8 @@ export const Communities = (props: any) => {
                 style={styles.itemFlatlist}>
                 <AppIcon styleIcon={styles.itemImg} pathImage={{ uri: item.image }} />
                 <View>
-                    <AppText styleText={styles.itemHeaderTitle}>{item.title}</AppText>
-                    <AppText styleText={styles.itemTitle}>{item.total_members} members</AppText>
+                    <AppText styleText={styles.itemHeaderTitle} children={undefined}>{item.title}</AppText>
+                    <AppText styleText={styles.itemTitle} children={undefined}>{item.total_members} members</AppText>
                 </View>
             </TouchableOpacity>
         )
@@ -56,7 +56,7 @@ export const Communities = (props: any) => {
             alignItems: 'center',
             paddingHorizontal: 24
         }}>
-            <AppText styleText={styles.headingTitle}>Communities</AppText>
+            <AppText styleText={styles.headingTitle} children={undefined}>Communities</AppText>
             <AppSearch
                 onChangeText={setTextSearch}
                 placeholder={'Find a community'}
