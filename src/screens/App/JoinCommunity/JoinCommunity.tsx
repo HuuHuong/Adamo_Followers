@@ -7,6 +7,7 @@ import {
 	TextInput
 } from 'react-native'
 import { useSelector } from 'react-redux'
+import Modal from "react-native-modal";
 import { COLOR, screenWidth } from '../../../assets'
 import { AppAvatar } from '../../../components/AppAvatar'
 import { AppButton } from '../../../components/AppButton'
@@ -90,7 +91,29 @@ export const JoinCommunity = (props: any) => {
 		})
 
 		const filterByGender = userFilter.filter((item: any) => {
-
+			if (male === female && female === others)
+				return item
+			else if (male == true) {
+				if (female == true && others == false)
+					return item.user.gender !== 3
+				else if (female == false && others == true)
+					return item.user.gender !== 2
+				else return item.user.gender === 1
+			}
+			else if (female == true) {
+				if (male == false && others == true)
+					return item.user.gender !== 1
+				else if (male == true && others == false)
+					return item.user.gender !== 3
+				else return item.user.gender === 2
+			}
+			else if (others == true) {
+				if (male == true && female == false)
+					return item.user.gender !== 2
+				else if (male == false && female == true)
+					return item.user.gender !== 1
+				else return item.user.gender === 3
+			}
 		})
 
 		const finalFilter = () => {
@@ -104,7 +127,7 @@ export const JoinCommunity = (props: any) => {
 		console.log(filterByAge)
 		console.log(filterByGender)
 		console.log(finalFilter())
-		return
+		return setUserFilter(finalFilter())
 	}
 
 	const onClearFilter = () => {
@@ -299,11 +322,13 @@ export const JoinCommunity = (props: any) => {
 	}
 
 	return (
-		<ScrollView style={{
-			flex: 1,
-			backgroundColor: COLOR.Neutral.Neutral0,
-			paddingHorizontal: 24
-		}}>
+		<ScrollView
+			showsVerticalScrollIndicator={false}
+			style={{
+				flex: 1,
+				backgroundColor: COLOR.Neutral.Neutral0,
+				paddingHorizontal: 24
+			}}>
 			{listHeader()}
 			<AppFlatlist
 				data={userFilter}
