@@ -82,5 +82,41 @@ export const styles = StyleSheet.create({
         fontWeight: '400',
         color: COLOR.Neutral.Neutral6,
         marginTop: 8
+    },
+    titleFilter: {
+        fontFamily: 'NotoSans-Bold',
+        fontSize: FontSize.Font18,
+        color: COLOR.Neutral.Neutral0,
+        marginTop: 30
+    },
+    inputAge: {
+        fontFamily: 'NotoSans-Bold',
+        fontSize: FontSize.Font18,
+        color: COLOR.Neutral.Neutral0,
+        paddingVertical: 16,
+        backgroundColor: COLOR.Neutral.Neutral6,
+        borderRadius: 8,
+        width: 122,
+        paddingHorizontal: 16,
+    },
+    applyFilter: {
+        fontFamily: 'NotoSans-Bold',
+        fontSize: FontSize.Font16,
+        color: COLOR.Neutral.Neutral0,
+        paddingVertical: 16,
+        paddingHorizontal: 48.5,
+        backgroundColor: COLOR.Primary,
+        borderRadius: 8
+    },
+    clearFilter: {
+        fontFamily: 'NotoSans-Bold',
+        fontSize: FontSize.Font16,
+        color: COLOR.Neutral.Neutral4,
+        paddingVertical: 16,
+        paddingHorizontal: 48.5,
+        borderColor: COLOR.Neutral.Neutral4,
+        borderWidth: 1,
+        borderRadius: 8,
+
     }
 })

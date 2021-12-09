@@ -19,7 +19,7 @@ interface InputProps {
     type?: string
     onValueChange?: (e: string) => void
     keyboardType?: KeyboardTypeOptions;
-    stylesInput?: TextStyle | TextStyle[];
+    stylesInput?: ViewStyle | ViewStyle[];
     onFocused?: () => void;
     numpad?: boolean,
     placeholderTextColor?: string,
@@ -46,7 +46,7 @@ export const AppInput = (props: InputProps) => {
     const [isFocused, setIsFocused] = React.useState(false);
     return (
         <View style={{ marginTop: 16 }}>
-            <AppText styleText={styleText}>{children}</AppText>
+            {children ? <AppText styleText={styleText}>{children}</AppText> : null}
             <TextInput
                 onChangeText={onValueChange}
                 onFocus={() => {

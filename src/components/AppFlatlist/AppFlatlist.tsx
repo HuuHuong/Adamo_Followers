@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useReducer, useRef } from 'react'
 import {
     View,
     Text,
@@ -17,16 +17,23 @@ interface FlatListProps {
 }
 export const AppFlatlist = (props: FlatListProps) => {
     const {
-        data,
+        data = [],
         keyExtractor,
         renderItem,
         styleFlatList,
         listHeader
     } = props
 
+    // const scrollToIndex = () => {
+    //     console.log('scroll to index called !')
+    //     let index = 0
+    //     data.current.scrollToIndex({ animated: true, index: index })
+    //   }
+
     return (
         <View style={[{ flex: 1 }, styleFlatList]}>
             <FlatList
+                initialScrollIndex={0}
                 keyExtractor={keyExtractor}
                 data={data}
                 renderItem={renderItem}
