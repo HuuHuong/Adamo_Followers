@@ -6,14 +6,53 @@ import { AppButton } from '../../../components/AppButton'
 import { AppIcon } from '../../../components/AppIcon'
 import { AppText } from '../../../components/AppText'
 import { styles } from './styles'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { HOME } from '../../../services/API'
+import { AppFlatlist } from '../../../components/AppFlatlist'
+
 export const Home = (props: any) => {
 	const { navigation } = props
+	const ditpatch = useDispatch()
+	const [userInfo, setUserInfor] = useState<any>()
+
 	const onPurchase = () => {
 		return navigation.navigate('PurchaseCoin')
 	}
 	const [category, setCategory] = useState()
-	const dataUser = useSelector((store: any) => store.USER_INFOR.user)
+	useEffect(() => {
+		const getUserInfor = async () => {
+			try {
+				const response = await HOME()
+				console.log(userInfo);
+				setUserInfor(response?.data?.data?.data)
+				ditpatch({ type: 'USER_LOGIN', payLoad: userInfo })
+
+			} catch (error) {
+				console.error({ error });
+
+			}
+		}
+		getUserInfor()
+	}, [])
+
+	const renderJoinedCommunities = ({ item }: any) => {
+		return (
+			<View style={{ marginRight: 12 }}>
+				<AppAvatar
+					styleAvatar={styles.imgJoied}
+					pathImage={{ uri: item.image }} />
+				<AppText styleText={styles.titedJoined}>{item.name}</AppText>
+			</View>
+		)
+	}
+
+	const renderListCommunities = ({ item }: any) => {
+		return (
+			<View>
+
+			</View>
+		)
+	}
 
 	return (
 		<ScrollView
@@ -24,10 +63,10 @@ export const Home = (props: any) => {
 					<View style={styles.introUser}>
 						<AppAvatar
 							styleAvatar={styles.imgAvatar}
-							pathImage={{ uri: dataUser.user.avatar }} />
+							pathImage={{ uri: userInfo?.user?.avatar }} />
 						<View>
 							<AppText styleText={styles.hello}>Hello</AppText>
-							<AppText styleText={styles.headingTitle}>{dataUser.user.username}</AppText>
+							<AppText styleText={styles.headingTitle}>{userInfo?.user?.username}</AppText>
 						</View>
 					</View>
 					<View style={styles.newsNoti}>
@@ -48,8 +87,16 @@ export const Home = (props: any) => {
 						</View>
 					</View>
 					<AppText styleText={[styles.headingTitle, { marginTop: 35, marginBottom: 20 }]}>Joined Communities</AppText>
+					<AppFlatlist
+						horizontal={true}
+						data={userInfo?.user?.communities}
+						renderItem={renderJoinedCommunities}
+					// listHeader={listHeader}
+					/>
 					<AppText styleText={[styles.headingTitle, { marginTop: 40, marginBottom: 20 }]}>Other</AppText>
-					{FakeData3.map((categiries) => {
+
+
+					{/* {userInfo?.listCategories?.map((categiries: any) => {
 						if (categiries.id < 5)
 							return (
 								<View
@@ -58,14 +105,14 @@ export const Home = (props: any) => {
 								>
 									<AppIcon
 										styleIcon={styles.imgCate}
-										pathImage={categiries.img} />
+										pathImage={{ uri: categiries?.image }} />
 									<View style={{ marginLeft: 16 }}>
-										<AppText styleText={styles.itemCateHeader}>{categiries.title}</AppText>
-										<AppText styleText={styles.ietamCateTitle}>{categiries.numMember.toString()} members</AppText>
+										<AppText styleText={styles.itemCateHeader}>{categiries?.title}</AppText>
+										<AppText styleText={styles.ietamCateTitle}>{categiries?.total_members} members</AppText>
 									</View>
 								</View>
 							)
-					})}
+					})} */}
 					<AppButton
 						onPress={() => navigation.navigate('Communities')}
 						styleBtn={styles.seeAll}
@@ -90,7 +137,6 @@ export const Home = (props: any) => {
 						styleIcon={styles.iconBtnFooter}
 					/>
 					<AppButton
-
 						styleBtn={[styles.btn, { marginBottom: 40 }]}
 						children={'Introduce via Facebook'}
 						styleChildren={styles.titleBtn}

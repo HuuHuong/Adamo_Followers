@@ -10,6 +10,7 @@ export const API_URL = {
     },
 
     APP: {
+        HOME: 'user/home',
         CATEGORIES: 'user/categories',
         DETAIL_CATEGORY: 'user/category',
         JOIN_COMMUNITY: 'user/communities/join',

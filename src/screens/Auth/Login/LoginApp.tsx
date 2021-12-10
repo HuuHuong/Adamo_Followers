@@ -27,7 +27,6 @@ export const LoginApp = (props: any) => {
                 password: password,
                 device_token: "uulq84ejbkPeWTzIgZcDGqUAhbsY6ZPdbLyr61Y2sSLtXx-DtSS3XLqnuyWHNu1n6DbH0cURQeqc4FT5asddasdaN"
             })
-            dispatch({ type: 'USER_LOGIN', payLoad: response.data.data })
             setToken(response.data.data.token)
             navigate('BottomNavigation')
         } catch (error) {

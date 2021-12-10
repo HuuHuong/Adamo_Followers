@@ -51,6 +51,19 @@ export const styles = StyleSheet.create({
         fontSize: FontSize.Font14,
         color: COLOR.Neutral.Neutral6
     },
+    imgJoied: {
+        width: 210,
+        height: 130,
+        borderRadius: 16
+    },
+    titedJoined: {
+        fontFamily: 'NotoSans-Bold',
+        fontSize: FontSize.Font16,
+        color: COLOR.Neutral.Neutral0,
+        position: 'absolute',
+        bottom: 20,
+        left: 20
+    },
     imgCate: {
         width: 74,
         height: 74,
