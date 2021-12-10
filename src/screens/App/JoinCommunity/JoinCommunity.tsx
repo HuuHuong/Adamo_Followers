@@ -19,6 +19,7 @@ import { AppText } from '../../../components/AppText'
 import { CheckBox } from '../../../components/CheckBox/CheckBox'
 import { Detail_Category, Join_Community, Leave_Community } from '../../../services/API'
 import { styles } from './styles'
+import { useRef } from 'react';
 
 export const JoinCommunity = (props: any) => {
 	const { navigation } = props
@@ -33,6 +34,34 @@ export const JoinCommunity = (props: any) => {
 	const [others, setOthers] = useState<Boolean>(false)
 	const [minAge, setMinAge] = useState('')
 	const [maxAge, setMaxAge] = useState('')
+	const [frameOffsetY, setFrameOffsetY] = useState<any>()
+
+	const ref = useRef<any>(null)
+	const debouncedValue = useDebounce<string>(textFilter, 250)
+
+	useEffect(() => {
+		const filterByName = userFilter.filter((item: any) => {
+			return item.user.username.toLowerCase().includes(debouncedValue.toLowerCase())
+		})
+		setUserFilter(filterByName)
+		if (debouncedValue == '')
+			setUserFilter(userList)
+	}, [debouncedValue])
+
+	// console.log(textFilter);
+
+
+	function useDebounce<T>(value: T, delay?: number): T {
+		const [debouncedValue, setDebouncedValue] = useState<T>(value)
+
+		useEffect(() => {
+			const timer = setTimeout(() => setDebouncedValue(value), delay || 250)
+			return () => {
+				clearTimeout(timer)
+			}
+		}, [value, delay])
+		return debouncedValue
+	}
 
 	useEffect(() => {
 		const detailCategory = async () => {
@@ -64,19 +93,20 @@ export const JoinCommunity = (props: any) => {
 			setIsJoined(false)
 		} catch (error) {
 			console.error({ error });
-
 		}
+	}
+
+	const onScrollHandle = () => {
+
 	}
 
 	const onApplyFilter = () => {
 		console.log(textFilter, minAge, maxAge, male, female, others);
-
 		setOnFilter(false)
 		const filterByName = userFilter.filter((item: any) => {
 			setUserFilter(userList)
 			return item.user.username.toLowerCase().includes(textFilter.toLowerCase())
 		})
-
 		const filterByAge = userFilter.filter((item: any) => {
 			if (minAge === '') {
 				if (maxAge === '')
@@ -89,44 +119,52 @@ export const JoinCommunity = (props: any) => {
 				else return item.user.age >= parseInt(minAge) && item.user.age <= parseInt(maxAge)
 			}
 		})
-
 		const filterByGender = userFilter.filter((item: any) => {
-			if (male === female && female === others)
-				return item
-			else if (male == true) {
-				if (female == true && others == false)
+			if (male == true) {
+				if (female && others == false)
 					return item.user.gender !== 3
-				else if (female == false && others == true)
+				else if (female == false && others)
 					return item.user.gender !== 2
+				else if (male === female && female === others)
+					return setUserFilter(userList)
 				else return item.user.gender === 1
 			}
 			else if (female == true) {
-				if (male == false && others == true)
+				if (male == false && others)
 					return item.user.gender !== 1
-				else if (male == true && others == false)
+				else if (male && others == false)
 					return item.user.gender !== 3
+				else if (male === female && female === others)
+					return setUserFilter(userList)
 				else return item.user.gender === 2
 			}
 			else if (others == true) {
-				if (male == true && female == false)
+				if (male && female == false)
 					return item.user.gender !== 2
-				else if (male == false && female == true)
+				else if (male == false && female)
 					return item.user.gender !== 1
+				else if (male === female && female === others)
+					return setUserFilter(userList)
 				else return item.user.gender === 3
 			}
-		})
 
+		})
 		const finalFilter = () => {
 			const idByName = filterByName.map((item: any) => item.id);
-			let filtered = filterByAge.filter((item: any) => idByName.includes(item.id));
+			const idByGender = filterByGender.map((item: any) => item.id)
+			let filtered = filterByAge.filter((item: any) =>
+				idByGender.includes(item.id) &&
+				idByName.includes(item.id)
+			);
 			return filtered
 		}
 
-		console.log(userFilter);
-		console.log(filterByName)
-		console.log(filterByAge)
-		console.log(filterByGender)
-		console.log(finalFilter())
+		console.log('User List', userList);
+		console.log('User Filter', userFilter);
+		console.log('Filter by Name', filterByName)
+		console.log('Filter by Age', filterByAge)
+		console.log('Filter by Gender', filterByGender)
+		console.log('Final filtered', finalFilter())
 		return setUserFilter(finalFilter())
 	}
 
@@ -210,10 +248,21 @@ export const JoinCommunity = (props: any) => {
 					)}
 				</View>
 
-				<AppText styleText={styles.headingSection}>Member</AppText>
-				<View style={{}}>
+				<AppText
+					onLayout={(event) => {
+						const layout = event.nativeEvent.layout
+						setFrameOffsetY(layout.y)
+					}}
+					styleText={styles.headingSection}>Member</AppText>
+				<View >
 					<AppSearch
-						onPress={() => setOnFilter(!onFilter)}
+						onPress={() => {
+							ref.current?.scrollTo({
+								// animated: true,
+								y: frameOffsetY - 10
+							}),
+								setOnFilter(!onFilter)
+						}}
 						onChangeText={setTextFilter}
 						value={textFilter}
 						placeholder={'Search by name'}
@@ -223,8 +272,6 @@ export const JoinCommunity = (props: any) => {
 						borderRadius: 8,
 						width: '100%',
 						paddingHorizontal: 32,
-
-
 					}, !onFilter ? { display: 'none' } : { display: 'flex' }]}>
 						<AppText styleText={styles.titleFilter}>Age</AppText>
 						<View style={{
@@ -323,6 +370,7 @@ export const JoinCommunity = (props: any) => {
 
 	return (
 		<ScrollView
+			ref={ref}
 			showsVerticalScrollIndicator={false}
 			style={{
 				flex: 1,

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { SearchBar } from 'react-native-elements';
 import {
     View,
     Text,

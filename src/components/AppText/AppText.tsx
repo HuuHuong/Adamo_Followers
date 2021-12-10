@@ -3,24 +3,28 @@ import {
     View,
     Text,
     TextProps as TextProperties,
-    ViewStyle
+    ViewStyle,
+    LayoutChangeEvent
 } from 'react-native'
 
 interface TextProps extends TextProperties {
     children: React.ReactNode;
     styleText?: ViewStyle | ViewStyle[] | any,
-    numberOfLines?: number
+    numberOfLines?: number,
+    onLayout?: ((event: LayoutChangeEvent) => void) | undefined;
 }
 
 export const AppText = (props: TextProps) => {
     const {
         children,
         styleText,
-        numberOfLines
+        numberOfLines,
+        onLayout
     } = props
 
     return (
         <Text
+            onLayout={onLayout}
             numberOfLines={numberOfLines}
             style={styleText}>{children}</Text>
     )
