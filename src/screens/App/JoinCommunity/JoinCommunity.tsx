@@ -80,6 +80,8 @@ export const JoinCommunity = (props: any) => {
 		try {
 			const response = await Join_Community({ category_id: inforCommunity.id })
 			console.log(response);
+			console.log(inforCommunity);
+
 			setIsJoined(true)
 		} catch (error) {
 			console.error({ error })
@@ -90,14 +92,12 @@ export const JoinCommunity = (props: any) => {
 		try {
 			const response = await Leave_Community({ category_id: inforCommunity.id })
 			console.log(response);
+			console.log(inforCommunity);
+
 			setIsJoined(false)
 		} catch (error) {
 			console.error({ error });
 		}
-	}
-
-	const onScrollHandle = () => {
-
 	}
 
 	const onApplyFilter = () => {

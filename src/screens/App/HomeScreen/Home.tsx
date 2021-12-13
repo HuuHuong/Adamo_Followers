@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import { COLOR, FakeData3, FontSize, screenWidth, SCREEN_ROUTER } from '../../../assets'
 import { AppAvatar } from '../../../components/AppAvatar'
 import { AppButton } from '../../../components/AppButton'
@@ -12,7 +12,7 @@ import { AppFlatlist } from '../../../components/AppFlatlist'
 
 export const Home = (props: any) => {
 	const { navigation } = props
-	const ditpatch = useDispatch()
+	const dispatch = useDispatch()
 	const [userInfo, setUserInfor] = useState<any>()
 
 	const onPurchase = () => {
@@ -23,13 +23,11 @@ export const Home = (props: any) => {
 		const getUserInfor = async () => {
 			try {
 				const response = await HOME()
-				console.log(userInfo);
 				setUserInfor(response?.data?.data?.data)
-				ditpatch({ type: 'USER_LOGIN', payLoad: userInfo })
+				dispatch({ type: 'USER_LOGIN', payLoad: userInfo })
 
 			} catch (error) {
 				console.error({ error });
-
 			}
 		}
 		getUserInfor()
@@ -37,20 +35,29 @@ export const Home = (props: any) => {
 
 	const renderJoinedCommunities = ({ item }: any) => {
 		return (
-			<View style={{ marginRight: 12 }}>
+			<TouchableOpacity style={{ marginRight: 12 }}>
 				<AppAvatar
 					styleAvatar={styles.imgJoied}
 					pathImage={{ uri: item.image }} />
 				<AppText styleText={styles.titedJoined}>{item.name}</AppText>
-			</View>
+			</TouchableOpacity>
 		)
 	}
 
 	const renderListCommunities = ({ item }: any) => {
 		return (
-			<View>
-
-			</View>
+			<TouchableOpacity
+				key={item.id}
+				style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}
+			>
+				<AppIcon
+					styleIcon={styles.imgCate}
+					pathImage={{ uri: item?.image }} />
+				<View style={{ marginLeft: 16 }}>
+					<AppText styleText={styles.itemCateHeader}>{item?.title}</AppText>
+					<AppText styleText={styles.ietamCateTitle}>{item?.total_members} members</AppText>
+				</View>
+			</TouchableOpacity>
 		)
 	}
 
@@ -94,25 +101,11 @@ export const Home = (props: any) => {
 					// listHeader={listHeader}
 					/>
 					<AppText styleText={[styles.headingTitle, { marginTop: 40, marginBottom: 20 }]}>Other</AppText>
+					<AppFlatlist
+						data={userInfo?.listCategories}
+						renderItem={renderListCommunities}
+					/>
 
-
-					{/* {userInfo?.listCategories?.map((categiries: any) => {
-						if (categiries.id < 5)
-							return (
-								<View
-									key={categiries.id}
-									style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}
-								>
-									<AppIcon
-										styleIcon={styles.imgCate}
-										pathImage={{ uri: categiries?.image }} />
-									<View style={{ marginLeft: 16 }}>
-										<AppText styleText={styles.itemCateHeader}>{categiries?.title}</AppText>
-										<AppText styleText={styles.ietamCateTitle}>{categiries?.total_members} members</AppText>
-									</View>
-								</View>
-							)
-					})} */}
 					<AppButton
 						onPress={() => navigation.navigate('Communities')}
 						styleBtn={styles.seeAll}
