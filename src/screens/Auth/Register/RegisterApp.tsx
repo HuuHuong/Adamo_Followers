@@ -8,7 +8,7 @@ import { screenWidth } from '../../../assets/Spacing'
 import { Sign_Up } from '../../../services/API'
 import { styles } from './styles'
 import { AppPicker } from '../../../components/AppPicker'
-
+import { BackIcon } from '../../../assets/svgIcon'
 export const RegisterApp = (props: any) => {
     const { navigation } = props
     const gender = ['Male', 'Female', 'Other']
@@ -78,11 +78,7 @@ export const RegisterApp = (props: any) => {
             <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                 <View style={{ width: screenWidth }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 40 }}>
-                        <AppButton
-                            onPress={() => navigation.goBack()}
-                            styleBtn={{ flexDirection: 'row' }}
-                            styleIcon={{ width: 25, height: 25, }}
-                            pathImage={require('../../../assets/icons/CaretLeft.png')} />
+                        <BackIcon iconFillColor='#000000' onPress={() => navigation.goBack()} />
                         <AppText styleText={styles.headingTitle}>Register</AppText>
                     </View>
                     <AppText styleText={styles.headingTitle2}>Your SNS accounts</AppText>
